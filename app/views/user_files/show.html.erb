@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_file.full_name %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @user_file.program %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @user_file.fee %>
+</p>
+
+<p>
+  <strong>Date of Birth:</strong>
+  <%= @user_file.dob %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user_file.address %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @user_file.discount %>
+</p>
+
+<p>
+  <strong>Social Security:</strong>
+  <%= @user_file.ssn %>
+</p>
+
+<p>
+  <strong>Payment Status:</strong>
+  <%= @user_file.payment_status %>
+</p>
+
+<p>
+  <strong>Placement Date:</strong>
+  <%= @user_file.placement_date %>
+</p>
+
+<p>
+  <strong>Files</strong>
+  <% @user_file.files.each do |f|%>
+      <% if f.previewable? %>
+        <%= link_to(image_tag(f.preview(resize: '400x400')), rails_blob_path(f), target: '_blank') %>
+      <%else%>
+        <%= link_to(image_tag(f, style: 'width: 400px'), rails_blob_path(f, disposition: 'attachment')) %>
+      <%end%>
+  <%end%>
+</p>
+
+
+<%= link_to 'Edit', edit_user_file_path(@user_file) %> |
+<%= link_to 'Back', user_files_path %>

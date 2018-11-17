@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.text %></td>
+        <td><%= link_to 'Edit', edit_user_file_note_path(@user_file, note) %></td>
+        <td><%= link_to 'Destroy', user_file_note_path(@user_file, note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <div>
+    <%= render 'form', note: @note %>
+  </div>
+</table>
+
+<br>
+
