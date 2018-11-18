@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :user_files do
     resources :notes
     resources :receipts
+    resources :files, only: [:destroy]
   end
 
 end

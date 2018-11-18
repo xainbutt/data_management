@@ -1,84 +1,86 @@
-<%= form_with(model: user_file, local: true) do |form| %>
-  <% if user_file.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user_file.errors.count, "error") %> prohibited this user_file from being saved:</h2>
+<div class="row">
+  <div class="col s12">
+    <%= form_with(model: user_file, local: true) do |form| %>
+        <% if user_file.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(user_file.errors.count, "error") %> prohibited this user_file from being saved:</h2>
 
-      <ul>
-      <% user_file.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <p>
-      <strong>Files</strong>
-      <% user_file.files.each do |f|%>
-          <% if f.previewable? %>
-              <%= link_to(image_tag(f.preview(resize: '400x400')), rails_blob_path(f), target: '_blank') %>
-          <%else%>
-              <%= link_to(image_tag(f, style: 'width: 400px'), rails_blob_path(f, disposition: 'attachment')) %>
-          <%end%>
-      <%end%>
-    </p>
+              <ul>
+                <% user_file.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
 
-  <div class="field">
-    <%= form.label :files %>
-    <%= form.file_field :files, multiple: true %>
+        <div class="field">
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :program %>
+          <%= form.text_field :program%>
+        </div>
+
+        <div class="field">
+          <%= form.label :fee %>
+          <%= form.number_field :fee %>
+        </div>
+
+        <div class="field">
+          <%= form.label :dob %>
+          <%= form.date_field :dob %>
+        </div>
+
+        <div class="field">
+          <%= form.label :address %>
+          <%= form.text_field :address %>
+        </div>
+
+        <div class="field">
+          <!--<div class="input-field col s12">-->
+            <%= form.label :payment_status %>
+            <%= form.select(:payment_status, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}, class: 'browser-default') %>
+          <!--</div>-->
+        </div>
+
+        <div class="field">
+          <%= form.label :discount %>
+          <%= form.number_field :discount %>
+        </div>
+
+        <div class="field">
+          <%= form.label :ssn %>
+          <%= form.text_field :ssn %>
+        </div>
+
+        <div class="field">
+          <%= form.label :placement_date %>
+          <%= form.date_field :placement_date %>
+        </div>
+
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <%= form.file_field :files, multiple: true %>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Submit', class: 'btn blue lighten-2' %>
+        </div>
+    <% end %>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :program %>
-    <%= form.text_field :program%>
-  </div>
-
-  <div class="field">
-    <%= form.label :fee %>
-    <%= form.number_field :fee %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dob %>
-    <%= form.date_field :dob %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :payment_status %>
-    <%= form.select(:payment_status, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :discount %>
-    <%= form.number_field :discount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ssn %>
-    <%= form.text_field :ssn %>
-  </div>
-
-  <div class="field">
-    <%= form.label :placement_date %>
-    <%= form.date_field :placement_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

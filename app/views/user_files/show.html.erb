@@ -1,61 +1,107 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user_file.full_name %>
-</p>
+<div class="row">
+  <h3>User File</h3>
+  <div class="col s12 right-align">
+    <%= link_to 'Notes', user_file_notes_path(@user_file), class: 'btn-small ' %>
+    <%= link_to 'Receipts', user_file_receipts_path(@user_file), class: 'btn-small ' %>
+    <%= link_to 'Edit', edit_user_file_path(@user_file), class: 'btn-small ' %>
+    <%= link_to 'Back', user_files_path, class: 'btn-small ' %>
+  </div>
+</div>
 
-<p>
-  <strong>Program:</strong>
-  <%= @user_file.program %>
-</p>
-
-<p>
-  <strong>Fee:</strong>
-  <%= @user_file.fee %>
-</p>
-
-<p>
-  <strong>Date of Birth:</strong>
-  <%= @user_file.dob %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user_file.address %>
-</p>
-
-<p>
-  <strong>Discount:</strong>
-  <%= @user_file.discount %>
-</p>
-
-<p>
-  <strong>Social Security:</strong>
-  <%= @user_file.ssn %>
-</p>
-
-<p>
-  <strong>Payment Status:</strong>
-  <%= @user_file.payment_status %>
-</p>
-
-<p>
-  <strong>Placement Date:</strong>
-  <%= @user_file.placement_date %>
-</p>
-
-<p>
-  <strong>Files</strong>
-  <% @user_file.files.each do |f|%>
-      <% if f.previewable? %>
-        <%= link_to(image_tag(f.preview(resize: '400x400')), rails_blob_path(f), target: '_blank') %>
-      <%else%>
-        <%= link_to(image_tag(f, style: 'width: 400px'), rails_blob_path(f, disposition: 'attachment')) %>
-      <%end%>
-  <%end%>
-</p>
+<div class="row">
+  <div class="col s6 offset-s3">
+    <table class="highlight centered responsive-table">
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td> <%= @user_file.full_name %></td>
+        </tr>
+        <tr><td>Program:</td> <td><%= @user_file.program %></td></tr>
+        <tr><td>Fee:</td> <td><%= number_to_currency @user_file.fee %></td></tr>
+        <tr><td>Date of Birth:</td> <td><%= @user_file.dob.strftime('%d %b %Y') %></td></tr>
+        <tr> <td>Address: </td><td><%= @user_file.address %></td></tr>
+        <tr><td>Discount:</td> <td><%= number_to_currency @user_file.discount %></td></tr>
+        <tr><td>Social Security:</td> <td><%= @user_file.ssn %></td></tr>
+        <tr><td>Placement Date:</td> <td><%= @user_file.placement_date.strftime('%d %b %Y') %></td></tr>
+        <tr><td>Payment Satus:</td> <td style="background-color: <%= @user_file.payment_status %>"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_user_file_path(@user_file) %> |
-<%= link_to 'Back', user_files_path %>
+<div class="row">
+  <h4>Files</h4>
+  <div class="col s12">
+    <%if @user_file.files.attached? %>
+        <table class="striped centered responsive-table">
+          <thead>
+          <tr>
+            <th>Files</th>
+            <th colspan="2">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user_file.files.each do |f|%>
+              <% if f.previewable? %>
+                  <tr>
+                    <td><%= image_tag(f.preview(resize: '100x100')) %></td>
+                    <td>
+                      <%= link_to('download', rails_blob_path(f, disposition: 'attachment'), target: '_blank', class: 'btn-small ') %>
+                      <%= link_to('remove', user_file_file_path(@user_file, f), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-small red' ) %>
+                    </td>
+                  </tr>
+              <%else%>
+                  <tr>
+                    <td><%= image_tag(f, style: 'width: 100px') %></td>
+                    <td>
+                      <%= link_to('download', rails_blob_path(f, disposition: 'attachment'), target: '_blank', class: 'btn-small') %>
+                      <%= link_to('remove', user_file_file_path(@user_file, f), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-small red' ) %>
+                    </td>
+                  </tr>
+
+              <%end%>
+          <%end%>
+
+          </tbody>
+        </table>
+    <%else%>
+        <div class="card panel blue lighten-3"><span>No Files attached yet!</span></div>
+    <%end%>
+  </div>
+</div>
+
+
+<div class="row">
+  <h4>Notes</h4>
+  <div class="col s12">
+    <%if @user_file.notes.present? %>
+      <ul class="collection">
+        <% @user_file.notes.each do |note|%>
+          <li class="collection-item"><%= note.text%></li>
+        <%end%>
+      </ul>
+    <%else%>
+        <div class="card panel blue lighten-3"><span>No Notes created yet!</span></div>
+    <%end%>
+  </div>
+</div>
+
+
+<div class="row">
+  <h4>Receipts</h4>
+  <div class="col s12">
+    <%if @user_file.receipts.present? %>
+        <ul class="collection">
+          <% @user_file.receipts.each do |receipt|%>
+              <li class="collection-item">
+                <%= number_to_currency receipt.amount.to_i %> on <%= receipt.created_at.strftime('%d %b %Y')%>
+              </li>
+          <%end%>
+        </ul>
+    <%else%>
+        <div class="card panel blue lighten-3"><span>No Receipts created yet!</span></div>
+    <%end%>
+  </div>
+</div>

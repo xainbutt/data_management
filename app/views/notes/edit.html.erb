@@ -1,5 +1,12 @@
-<h1>Editing Note</h1>
+
+<div class="row">
+  <h3>Editing Note</h3>
+  <div class="col s12 right-align">
+
+    <%= link_to 'Back', user_file_notes_path , class: 'btn-small ' %>
+
+  </div>
+</div>
 
 <%= render 'form', note: @note %>
 
-<%= link_to 'Back', user_file_notes_path %>

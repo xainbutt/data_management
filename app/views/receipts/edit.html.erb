@@ -1,5 +1,13 @@
-<h1>Editing Receipt</h1>
+
+<div class="row">
+  <h3>Editing Receipt</h3>
+  <div class="col s12 right-align">
+
+    <%= link_to 'Back', user_file_receipts_path, class: 'btn-small ' %>
+
+  </div>
+</div>
+
 
 <%= render 'form', receipt: @receipt %>
 
-<%= link_to 'Back', user_file_notes_path  %>
