@@ -27,13 +27,13 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = @user_file.notes.new(note_params)
-
     respond_to do |format|
       if @note.save
         format.html { redirect_to user_file_notes_path , notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
-        format.html { render :new }
+        @notes = Note.where(user_file_id: params[:user_file_id])
+        format.html { render :index }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end

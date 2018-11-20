@@ -1,17 +1,7 @@
 <div class="row">
   <div class="col s12">
     <%= form_with(model: user_file, local: true) do |form| %>
-        <% if user_file.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(user_file.errors.count, "error") %> prohibited this user_file from being saved:</h2>
-
-              <ul>
-                <% user_file.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
+        <%= render 'layouts/errors', resource: user_file, resource_name: 'User File' %>
 
 
         <div class="field">
@@ -45,10 +35,8 @@
         </div>
 
         <div class="field">
-          <!--<div class="input-field col s12">-->
             <%= form.label :payment_status %>
             <%= form.select(:payment_status, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}, class: 'browser-default') %>
-          <!--</div>-->
         </div>
 
         <div class="field">
@@ -72,7 +60,7 @@
             <%= form.file_field :files, multiple: true %>
           </div>
           <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files (image and pdf)">
           </div>
         </div>
 

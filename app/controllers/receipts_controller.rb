@@ -33,7 +33,8 @@ class ReceiptsController < ApplicationController
         format.html { redirect_to user_file_receipts_path, notice: 'Receipt was successfully created.' }
         format.json { render :show, status: :created, location: @receipt }
       else
-        format.html { render :new }
+        @receipts = Receipt.where(user_file_id: params[:user_file_id])
+        format.html { render :index }
         format.json { render json: @receipt.errors, status: :unprocessable_entity }
       end
     end

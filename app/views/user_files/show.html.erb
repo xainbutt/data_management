@@ -1,6 +1,6 @@
 
 <div class="row">
-  <h3>User File</h3>
+  <blockquote><h3>User File</h3></blockquote>
   <div class="col s12 right-align">
     <%= link_to 'Notes', user_file_notes_path(@user_file), class: 'btn-small ' %>
     <%= link_to 'Receipts', user_file_receipts_path(@user_file), class: 'btn-small ' %>
@@ -32,7 +32,7 @@
 
 
 <div class="row">
-  <h4>Files</h4>
+  <blockquote><h4>Files</h4></blockquote>
   <div class="col s12">
     <%if @user_file.files.attached? %>
         <table class="striped centered responsive-table">
@@ -74,7 +74,7 @@
 
 
 <div class="row">
-  <h4>Notes</h4>
+  <blockquote><h4>Notes</h4></blockquote>
   <div class="col s12">
     <%if @user_file.notes.present? %>
       <ul class="collection">
@@ -90,7 +90,7 @@
 
 
 <div class="row">
-  <h4>Receipts</h4>
+  <blockquote><h4>Receipts</h4></blockquote>
   <div class="col s12">
     <%if @user_file.receipts.present? %>
         <ul class="collection">
