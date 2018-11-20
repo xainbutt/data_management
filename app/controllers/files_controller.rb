@@ -3,8 +3,10 @@ class FilesController < ApplicationController
 
 
   def destroy
-    file = @user_file.files.select { |f| f.blob.id == params[:id].to_i }.first
-    file.purge
+    image = ActiveStorage::Attachment.find(params[:id])
+    image.purge
+    # file = @user_file.files.select { |f| f.blob.id == params[:id].to_i }.first
+    # file.purge
     redirect_back fallback_location: root_path, notice: 'File was successfully destroyed.'
   end
 
