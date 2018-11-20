@@ -3,6 +3,7 @@ class FilesController < ApplicationController
 
 
   def destroy
+    Rails.logger "#{params} while destroying File"
     file = @user_file.files.select { |f| f.blob.id == params[:id].to_i }.first
     file.purge
     redirect_back fallback_location: root_path, notice: 'File was successfully destroyed.'
