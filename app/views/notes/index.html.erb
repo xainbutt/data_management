@@ -12,6 +12,7 @@
       <thead>
       <tr>
         <th>Text</th>
+        <th>Date</th>
         <th colspan="3"></th>
       </tr>
       </thead>
@@ -20,6 +21,7 @@
       <% @notes.each do |note| %>
           <tr>
             <td><%= note.text %></td>
+            <td><%= note.created_at.strftime('%d %b %Y - %H:%M:%S %P') %></td>
             <td><%= link_to 'Edit', edit_user_file_note_path(@user_file, note), class: 'btn-small' %></td>
             <td><%= link_to 'Destroy', user_file_note_path(@user_file, note), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-small red' %></td>
           </tr>

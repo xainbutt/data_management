@@ -1,41 +1,22 @@
-<div class="row">
-  <div class="col s12">
-    <h3>User Files</h3>
-    <%= link_to 'New User File', new_user_file_path, class: 'btn-small waves-light waves-effect blue' %>
-    <table class="striped centered responsive-table">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Program</th>
-        <th>Fee</th>
-        <th>Discount</th>
-        <th>Payment Status</th>
-        <th>Social Security</th>
-        <th colspan="5">Actions</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @user_files.each do |user_file| %>
-          <tr>
-            <td><%= user_file.full_name %></td>
-            <td><%= user_file.program %></td>
-            <td><%= number_to_currency user_file.fee.to_i %></td>
-            <td><%= number_to_currency user_file.discount.to_i %></td>
-            <td style="background-color: <%= user_file.payment_status %>"></td>
-            <td><%= user_file.ssn %></td>
-            <td><%= link_to 'Notes', user_file_notes_path(user_file) %></td>
-            <td><%= link_to 'Payments', user_file_receipts_path(user_file) %></td>
-            <td><%= link_to 'View', user_file %></td>
-            <td><%= link_to 'Edit', edit_user_file_path(user_file) %></td>
-            <td><%= link_to 'Destroy', user_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <div class="row" >
+    <div class="col s12">
+      <h3>User Files</h3>
+      <%= link_to 'New User File', new_user_file_path, class: 'btn-small waves-light waves-effect blue' %>
+    </div>
   </div>
-</div>
 
+  <div class="center">
+    <%== pagy_nav_materialize(@pagy) if @pagy.pages > 1 %>
+  </div>
 
+  <div class="row">
+    <div class="">
+      <% @user_files.each do |user_file| %>
+        <%= render 'user_files/card', user_file: user_file %>
+      <% end %>
+    </div>
+  </div>
 
-
+  <div class="center">
+    <%== pagy_nav_materialize(@pagy) if @pagy.pages > 1 %>
+  </div>

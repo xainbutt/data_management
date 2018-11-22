@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class UserFilesController < ApplicationController
+  include Pagy::Backend
   before_action :set_user_file, only: %i[show edit update destroy]
 
   # GET /user_files
   # GET /user_files.json
   def index
-    @user_files = UserFile.all
+    @pagy, @user_files = pagy(UserFile.all, items: 6)
   end
 
   # GET /user_files/1
@@ -71,6 +72,6 @@ class UserFilesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_file_params
-    params.require(:user_file).permit(:first_name, :last_name, :fee, :discount, :ssn, :program, :dob, :address, :placement_date, :payment_status, files: [])
+    params.require(:user_file).permit(:first_name, :last_name, :fee, :discount, :ssn, :program, :dob, :address, :placement_date, :payment_status, :payment_status_color, files: [])
   end
 end

@@ -24,7 +24,7 @@
         <tr><td>Discount:</td> <td><%= number_to_currency @user_file.discount %></td></tr>
         <tr><td>Social Security:</td> <td><%= @user_file.ssn %></td></tr>
         <tr><td>Placement Date:</td> <td><%= @user_file.placement_date.strftime('%d %b %Y') %></td></tr>
-        <tr><td>Payment Satus:</td> <td style="background-color: <%= @user_file.payment_status %>"></td></tr>
+        <tr><td>Payment Satus:</td> <td class=" <%= @user_file.payment_status_color %>-text hover-text" style="background-color: <%= @user_file.payment_status_color %>"><%= @user_file.payment_status %></td></tr>
       </tbody>
     </table>
   </div>

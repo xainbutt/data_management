@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col s12">
+    <% if @pagy.count > 0 %>
+      <blockquote><h5><%= pluralize(@user_files.count, 'result')%> found</h5></blockquote>
+    <%else%>
+      <div id="notfound">
+        <div class="notfound">
+          <div class="notfound-404">
+            <h1>Oops!</h1>
+            <h2>No Records Found</h2>
+          </div>
+          <a href="/search">Search Again</a>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="center">
+    <%== pagy_nav_materialize(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>
+
+
+
+<div class="row" style="margin-top: 20px;">
+
+  <% @user_files.each do |user_file| %>
+      <%= render 'user_files/card', user_file: user_file %>
+  <% end %>
+</div>
+<div class="center">
+  <%== pagy_nav_materialize(@pagy) if @pagy.pages > 1 %>
+</div>

@@ -36,7 +36,7 @@
 
         <div class="field">
             <%= form.label :payment_status %>
-            <%= form.select(:payment_status, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}, class: 'browser-default') %>
+            <%= form.select(:payment_status_color, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}, class: 'browser-default') %>
         </div>
 
         <div class="field">

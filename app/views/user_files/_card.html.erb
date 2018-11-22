@@ -1,0 +1,24 @@
+<div class="col s12 m4">
+  <div class="card ">
+    <div class="card-content black-text">
+      <span style="color: black;" data-badge-caption="<%= user_file.payment_status %>" class="badge <%= user_file.payment_status_color %>"></span>
+      <%= link_to user_file.full_name.capitalize , user_file, class: 'card-title' %>
+      <ul style="list-style: none">
+        <li style="padding: 5px 0px;"><strong>Program </strong> <span class="right"><%= user_file.program.capitalize %></span></li>
+        <li class="divider"></li>
+        <li style="padding: 5px 0px;"><strong>Fee </strong><span class="right"><%= user_file.fee %></span></li>
+        <li class="divider"></li>
+        <li style="padding: 5px 0px;"><strong>Discount </strong><span class="right"><%= user_file.discount %></span></li>
+        <li class="divider"></li>
+        <li style="padding: 5px 0px;"><strong>Social Security </strong><span class="right"><%= user_file.ssn %></span></li>
+        <li class="divider"></li>
+      </ul>
+     </div>
+    <div class="card-action">
+      <%= link_to 'Notes', user_file_notes_path(user_file) %>
+      <%= link_to 'Payments', user_file_receipts_path(user_file) %>
+      <%= link_to 'Edit', edit_user_file_path(user_file) %>
+      <%= link_to 'Remove', user_file, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+</div>

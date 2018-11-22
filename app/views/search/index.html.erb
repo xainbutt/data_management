@@ -1,0 +1,13 @@
+
+
+<div class="row" style="margin-top: 50px;">
+  <div class="col s6 offset-s3">
+    <%= form_tag(results_search_index_path, method: "get") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q, nil, placeholder: 'Enter search term', required: true) %>
+        <%= label_tag(:attr, "On:") %>
+        <%= select_tag(:attr, options_for_select([['Name', 'name'], ['Payment Status', 'payment_status'], %w(Program program)]), class: 'browser-default', style: 'margin-bottom: 15px;') %>
+        <%= submit_tag("Search", class: 'btn') %>
+    <% end %>
+  </div>
+</div>

@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 gem 'mini_magick'
 gem 'materialize-sass', '~> 1.0.0'
-gem 'kaminari'
+gem 'pagy'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

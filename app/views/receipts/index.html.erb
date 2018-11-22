@@ -21,7 +21,7 @@
       <% @receipts.each do |receipt| %>
           <tr>
             <td><%= number_to_currency receipt.amount %></td>
-            <td><%= receipt.created_at.strftime('%d %b %Y') %></td>
+            <td><%= receipt.created_at.strftime('%d %b %Y - %H:%M:%S %P') %></td>
             <td><%= link_to 'Edit', edit_user_file_receipt_path(@user_file, receipt), class: 'btn-small' %></td>
             <td><%= link_to 'Destroy', user_file_receipt_path(@user_file, receipt), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-small red' %></td>
           </tr>
