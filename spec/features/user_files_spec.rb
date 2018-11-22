@@ -39,13 +39,4 @@ describe 'User File' do
     end
   end
 
-  # context 'Deleting user file' do
-  #   Capybara.current_driver = :selenium
-  #   scenario 'successfully deleting a user file' do
-  #     visit root_path
-  #     expect(page).to have_content('User Files')
-  #     click_link 'destroy'
-  #     expect(page).to have_content('User file was successfully destroyed.')
-  #   end
-  # end
 end
