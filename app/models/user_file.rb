@@ -2,7 +2,7 @@ class UserFile < ApplicationRecord
   # validation
   validates_presence_of :first_name, :last_name, :address, :ssn, :discount,
                         :placement_date, :payment_status_color, :dob, :fee, :program
-  validates_inclusion_of :payment_status, in: %w(yellow red purple pink)
+  validates_inclusion_of :payment_status_color, in: %w(yellow red purple pink)
 
   # callback
   before_save :add_payment_status, on: [:update, :create]

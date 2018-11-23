@@ -27,9 +27,22 @@ RSpec.describe UserFile, type: :model do
 
   it { should validate_presence_of :placement_date}
 
-  it { should validate_presence_of :payment_status}
+  it { should validate_presence_of :payment_status_color}
 
-  it { should validate_inclusion_of(:payment_status).in_array(%w(yellow red purple pink))}
+  # it { should define_enum_for(:payment_status_color).with({ yellow: 'IMMEDIATE F/UP', red:'NON-PAYMENT HOLDS', pink:'CLIENT HOLD REQUEST', purple:'CLOSED FILE' })}
+
+  it 'should populate payment status after selecting status color' do
+    user_file = create(:user_file)
+    expect(user_file.payment_status_color).to eq('yellow')
+    expect(user_file.payment_status).to eq('IMMEDIATE F/UP')
+  end
+
+  it 'should only accept payment status color value as defined in enum' do
+    user_file2 = create(:user_file)
+    UserFile.payment_status_colors.include?(user_file2.payment_status_color)
+    expect(user_file2.payment_status_color).to array_including
+  end
+
 
   it { should have_many :notes }
 
