@@ -5,7 +5,7 @@ class UserFile < ApplicationRecord
   validates_inclusion_of :payment_status_color, in: %w(yellow red purple pink)
 
   # callback
-  before_save :add_payment_status, on: [:update, :create]
+  before_save :add_payment_status
 
   # association
   has_many :notes, dependent: :destroy

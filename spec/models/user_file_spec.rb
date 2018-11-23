@@ -38,9 +38,11 @@ RSpec.describe UserFile, type: :model do
   end
 
   it 'should only accept payment status color value as defined in enum' do
-    user_file2 = create(:user_file)
-    UserFile.payment_status_colors.include?(user_file2.payment_status_color)
-    expect(user_file2.payment_status_color).to array_including
+    expect(build(:user_file)).to be_valid
+  end
+
+  it 'should not accept payment status color value outside of the enum' do
+    expect(build(:user_file, payment_status_color: 'blue')).not_to be_valid
   end
 
 
