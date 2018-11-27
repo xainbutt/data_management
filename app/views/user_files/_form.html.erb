@@ -15,6 +15,16 @@
         </div>
 
         <div class="field">
+          <%= form.label :email %>
+          <%= form.text_field :email %>
+        </div>
+
+        <div class="field">
+          <%= form.label :phone_no %>
+          <%= form.text_field :phone_no %>
+        </div>
+
+        <div class="field">
           <%= form.label :program %>
           <%= form.text_field :program%>
         </div>
@@ -22,6 +32,21 @@
         <div class="field">
           <%= form.label :fee %>
           <%= form.number_field :fee %>
+        </div>
+
+        <div class="field">
+          <%= form.label :discount %>
+          <%= form.number_field :discount %>
+        </div>
+
+        <div class="field">
+          <%= form.label :balance %>
+          <%= form.number_field :balance %>
+        </div>
+
+        <div class="field">
+          <%= form.label :due_date %>
+          <%= form.date_field :due_date %>
         </div>
 
         <div class="field">
@@ -37,11 +62,6 @@
         <div class="field">
             <%= form.label :payment_status %>
             <%= form.select(:payment_status_color, [['IMMEDIATE F/UP', 'yellow'], ['CLIENT HOLD REQUEST', 'pink'], ['NON-PAYMENT HOLDS', 'red'], ['CLOSED FILE', 'purple']], {include_blank: true}, class: 'browser-default') %>
-        </div>
-
-        <div class="field">
-          <%= form.label :discount %>
-          <%= form.number_field :discount %>
         </div>
 
         <div class="field">

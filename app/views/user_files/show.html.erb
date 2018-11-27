@@ -17,11 +17,21 @@
           <td>Name:</td>
           <td> <%= @user_file.full_name %></td>
         </tr>
+        <tr>
+          <td>Email:</td>
+          <td> <%= @user_file.email %></td>
+        </tr>
+        <tr>
+          <td>Phone Number:</td>
+          <td> <%= @user_file.phone_no %></td>
+        </tr>
         <tr><td>Program:</td> <td><%= @user_file.program %></td></tr>
         <tr><td>Fee:</td> <td><%= number_to_currency @user_file.fee %></td></tr>
+        <tr><td>Discount:</td> <td><%= number_to_currency @user_file.discount %></td></tr>
+        <tr><td>Balance:</td> <td><%= @user_file.balance.present? ? number_to_currency(@user_file.balance) : 'N/A' %></td></tr>
+        <tr><td>Due Date:</td> <td><%= @user_file.due_date.present? ? @user_file.due_date.strftime('%d %b %Y') : 'N/A' %></td></tr>
         <tr><td>Date of Birth:</td> <td><%= @user_file.dob.strftime('%d %b %Y') %></td></tr>
         <tr> <td>Address: </td><td><%= @user_file.address %></td></tr>
-        <tr><td>Discount:</td> <td><%= number_to_currency @user_file.discount %></td></tr>
         <tr><td>Social Security:</td> <td><%= @user_file.ssn %></td></tr>
         <tr><td>Placement Date:</td> <td><%= @user_file.placement_date.strftime('%d %b %Y') %></td></tr>
         <tr><td>Payment Satus:</td> <td class=" <%= @user_file.payment_status_color %>-text hover-text" style="background-color: <%= @user_file.payment_status_color %>"><%= @user_file.payment_status %></td></tr>
@@ -77,11 +87,24 @@
   <blockquote><h4>Notes</h4></blockquote>
   <div class="col s12">
     <%if @user_file.notes.present? %>
-      <ul class="collection">
-        <% @user_file.notes.each do |note|%>
-          <li class="collection-item"><%= note.text%></li>
-        <%end%>
-      </ul>
+        <table class="striped centered">
+          <thead>
+          <tr>
+            <th >Text</th>
+            <th >Date</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @user_file.notes.each do |note| %>
+              <tr>
+                <td><%= note.text %></td>
+                <td><%= note.created_at.strftime('%d %b %Y - %H:%M:%S %P') %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
     <%else%>
         <div class="card panel blue lighten-3"><span>No Notes created yet!</span></div>
     <%end%>
@@ -93,13 +116,26 @@
   <blockquote><h4>Receipts</h4></blockquote>
   <div class="col s12">
     <%if @user_file.receipts.present? %>
-        <ul class="collection">
-          <% @user_file.receipts.each do |receipt|%>
-              <li class="collection-item">
-                <%= number_to_currency receipt.amount.to_i %> on <%= receipt.created_at.strftime('%d %b %Y')%>
-              </li>
-          <%end%>
-        </ul>
+        <table class="striped centered">
+          <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Date</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @user_file.receipts.each do |receipt| %>
+              <tr>
+                <td><%= number_to_currency receipt.amount %></td>
+                <td><%= receipt.created_at.strftime('%d %b %Y - %H:%M:%S %P') %></td>
+              </tr>
+          <% end %>
+          </tbody>
+
+
+        </table>
     <%else%>
         <div class="card panel blue lighten-3"><span>No Receipts created yet!</span></div>
     <%end%>

@@ -72,6 +72,8 @@ class UserFilesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_file_params
-    params.require(:user_file).permit(:first_name, :last_name, :fee, :discount, :ssn, :program, :dob, :address, :placement_date, :payment_status, :payment_status_color, files: [])
+    params.require(:user_file).permit(:first_name, :last_name, :fee, :discount, :ssn, :program,
+                                      :dob, :address, :placement_date, :payment_status,
+                                      :payment_status_color, :email, :phone_no, :balance, :due_date,files: [])
   end
 end

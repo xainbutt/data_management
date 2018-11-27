@@ -8,9 +8,13 @@
         <li class="divider"></li>
         <li style="padding: 5px 0px;"><strong>Fee </strong><span class="right"><%= user_file.fee %></span></li>
         <li class="divider"></li>
+        <li style="padding: 5px 0px;"><strong>Balance </strong><span class="right"><%= user_file.balance.present? ? user_file.balance : 'N/A' %></span></li>
+        <li class="divider"></li>
+        <li style="padding: 5px 0px;"><strong>Due Date </strong><span class="right"><%= user_file.due_date.present? ? user_file.due_date : 'N/A' %></span></li>
+        <li class="divider"></li>
         <li style="padding: 5px 0px;"><strong>Discount </strong><span class="right"><%= user_file.discount %></span></li>
         <li class="divider"></li>
-        <li style="padding: 5px 0px;"><strong>Social Security </strong><span class="right"><%= user_file.ssn %></span></li>
+        <li style="padding: 5px 0px;"><strong>Address </strong><span class="right"><%= user_file.address %></span></li>
         <li class="divider"></li>
       </ul>
      </div>
