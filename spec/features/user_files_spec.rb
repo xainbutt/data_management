@@ -31,8 +31,10 @@ describe 'User File' do
         fill_in 'Dob', with: Date.current
         fill_in 'Discount', with: '5'
         fill_in 'Ssn', with: 'SSN'
+        fill_in 'Email', with: 'xainbutt28@gmail.com'
+        fill_in 'Phone no', with: '03222546846'
         fill_in 'Placement date', with: Date.current
-        select('IMMEDIATE F/UP', from: 'Payment status')
+        select('IMMEDIATE F/UP', from: 'user_file_payment_status_color')
       end
       find('input[name="commit"]').click
       expect(page).to have_content('User file was successfully created.')
