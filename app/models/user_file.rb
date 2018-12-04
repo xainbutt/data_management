@@ -7,6 +7,9 @@ class UserFile < ApplicationRecord
 
   # callback
   before_save :add_payment_status
+  before_create :add_due_date 
+  before_create :add_balance 
+  
 
   # association
   has_many :notes, dependent: :destroy
@@ -31,4 +34,11 @@ class UserFile < ApplicationRecord
     self.payment_status = UserFile.payment_status_colors[self.payment_status_color.to_sym]
   end
 
+  def add_due_date
+    self.due_date = self.placement_date + 1.month if attribute_present?("placement_date")
+  end
+
+  def add_balance
+    self.balance = self.fee
+  end
 end

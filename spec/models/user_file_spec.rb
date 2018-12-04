@@ -46,6 +46,15 @@ RSpec.describe UserFile, type: :model do
   it { should have_many :receipts}
 
 #   it should not accept color outside of defined enum
+  it 'should add balance equal to fee when userfile is created' do
+    user_file = create(:user_file)
+    expect(user_file.balance).to eq(user_file.fee)
+  end
+
+  it 'should add due date on userfile 1 month in the future on creation' do
+    user_file = create(:user_file)
+    expect(user_file.due_date).to eq(user_file.placement_date + 1.month)
+  end
 
 
 
